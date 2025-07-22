@@ -3,7 +3,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Sidebar from "@/components/sidebar/page";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
-import Script from "next/script"; // 👈 importante para usar gtag corretamente
+import Script from "next/script"; 
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,6 +37,7 @@ export default function RootLayout({
         <Sidebar />
         {children}
         <VercelAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   );

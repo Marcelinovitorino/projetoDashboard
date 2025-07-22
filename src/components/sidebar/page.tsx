@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   Home,
+  LogOut,
   Package,
   PanelBottom,
   Settings2,
@@ -19,7 +20,7 @@ import {
 export default function Sidebar() {
   return (
     <div className="flex w-full flex-col bg-muted/40">
-      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 border-r bg-background sm:flex">
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 border-r bg-background sm:flex flex-col">
         <nav className="flex flex-col items-center gap-4 px-2 py-5">
           <TooltipProvider>
             {/* Ícone principal/logo */}
@@ -92,6 +93,22 @@ export default function Sidebar() {
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Configuracoes</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </nav>
+        <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-5 ">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="#"
+                  className=" ml--5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <LogOut className="h-5 w-5 text-red-500" />
+                  <span className="sr-only">Sair</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Sair</TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </nav>

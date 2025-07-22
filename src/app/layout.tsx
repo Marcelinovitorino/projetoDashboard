@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Sidebar from "@/components/sidebar/page";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import Script from "next/script"; // 👈 importante para usar gtag corretamente
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +17,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics Script */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-SNMW448N83"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-SNMW448N83');
+          `}
+        </Script>
+      </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased")}>
         <Sidebar />
         {children}
-        <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   );
